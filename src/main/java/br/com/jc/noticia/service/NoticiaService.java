@@ -62,9 +62,9 @@ public class NoticiaService {
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public String deletarNoticia(String titulo) {
+    public String deletarNoticia(Noticia noticia) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> writeResult = dbFirestore.collection(COL_NAME).document(titulo.toUpperCase(Locale.ROOT)).delete();
-        return "Document with Patient ID "+titulo+" has been deleted";
+        ApiFuture<WriteResult> writeResult = dbFirestore.collection(COL_NAME).document(noticia.getTitulo().toUpperCase(Locale.ROOT)).delete();
+        return "Document with Patient ID "+noticia.getTitulo()+" has been deleted in " +  writeResult.get().getUpdateTime() ;
     }
 }

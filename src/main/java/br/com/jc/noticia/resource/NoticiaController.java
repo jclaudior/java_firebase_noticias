@@ -49,10 +49,10 @@ public class NoticiaController {
         }
     }
 
-    @DeleteMapping(path = "/titulo/{titulo}")
-    public ResponseEntity<?> deletarNoticia (@PathVariable String titulo){
+    @DeleteMapping
+    public ResponseEntity<?> deletarNoticia (@RequestBody Noticia noticia){
         try{
-            return ResponseEntity.ok().body(noticiaService.deletarNoticia(titulo));
+            return ResponseEntity.ok().body(noticiaService.deletarNoticia(noticia));
         }catch (Exception e){
             return  ResponseEntity.internalServerError().body(e.getMessage());
         }
